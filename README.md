@@ -18,4 +18,4 @@ Step 4: Run the "npm start" command to run the project
 
 ### Good luck!
 
-<p style="font-size: 10px">The project will be upgraded</p>
+<p style="font-size: 5px">The project will be upgraded</p>
