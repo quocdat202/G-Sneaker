@@ -17,3 +17,5 @@ Step 4: Run the "npm start" command to run the project
 ### By: Quoc Dat
 
 ### Good luck!
+
+<p style="font-size: 10px">The project will be upgraded</p>
