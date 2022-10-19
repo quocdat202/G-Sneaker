@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import '../css/Cart.css';
 import nike from '../images/nike.png';
+import check from '../images/check.png';
 import dataShoes from '../data/Products.js'
 import ItemInCart from './ItemInCart.js'
+
 export default function Cart() {
     const [productItem, setProductItem] = useState({});
     const [reload, setReload] = useState(false);
@@ -14,18 +16,18 @@ export default function Cart() {
         setReload(false);
     }, [reload]);
 
-    function addToCart(index) {
+    function addToCart(id, index) {
+        var quantity = 1;
         let productList = localStorage.getItem('productList');
 
         if (productList) {
             let product = JSON.parse(productList);
-            setProductItem(product);
-            let newCart = { ...(dataShoes.shoes[index]), inCart: true };
+            let newCart = { ...(dataShoes.shoes[index]), inCart: true, quantity: quantity };
             product.push((newCart));
             localStorage.setItem('productList', JSON.stringify(product));
-            console.log("bcbcbcbcb", productItem);
+            setProductItem(product);
         } else {
-            let newCart = { ...(dataShoes.shoes[index]), inCart: true };
+            let newCart = { ...(dataShoes.shoes[index]), inCart: true, quantity: quantity };
             localStorage.setItem('productList', JSON.stringify([newCart]));
         }
         setReload(true);
@@ -34,23 +36,26 @@ export default function Cart() {
     function addCart(item, index) {
         let productList = localStorage.getItem('productList');
         let product = JSON.parse(productList);
-        console.log("cccccccccccc", item.id);
-
-        product.forEach(element => {
-            console.log(element.id);
-
-            if (element.id === item.id) {
-                return (
-                    <button type="button" className="btn-add-cart btn-primary" onClick={() => addToCart(index)} >ADD TO CART</button>
-
-                )
-            } if (element.id !== item.id) {
-                return (
-                    <p className="check">abc</p>
-
-                )
-            }
-        });
+        console.log("item-id", item.id);
+        console.log("product list", product);
+        if (product !== null) {
+            product.map(element => {
+                if (element.id === item.id) {
+                    console.log("element-id:   ", element.id);
+                    return (
+                        <img src={check}>Check</img>
+                    )
+                } else {
+                    return (
+                        <button type="button" className="btn-add-cart btn-primary" onClick={() => addToCart(index)} >ADD TO CART</button>
+                    )
+                }
+            });
+        } else {
+            return (
+                <button type="button" className="btn-add-cart btn-primary" onClick={() => addToCart(index)} >ADD TO CART</button>
+            )
+        }
 
     }
     return (
@@ -75,7 +80,9 @@ export default function Cart() {
                                         </div>
                                         <div className="item-shoes-price-btn">
                                             <p>${item.price}</p>
-                                            <button type="button" className="btn-add-cart btn-primary" onClick={() => addToCart(index)} >ADD TO CART</button>
+                                            {/* <ButtonAdd item={item} index={index} addToCart={addToCart} /> */}
+                                            <button type="button" className="btn-add-cart btn-primary" onClick={() => addToCart(item.id, index)} >ADD TO CART</button>
+                                            {/* {addCart(item, index)} */}
                                         </div>
 
                                     </div>
@@ -91,7 +98,7 @@ export default function Cart() {
                 <div className="item-content">
                     <div className="products-item">
                         {
-                            productItem.length > 0 ? <ItemInCart productItem={productItem} /> : <p>Cart is empty</p>
+                            productItem.length > 0 ? <ItemInCart productItem={productItem} addToCart={addToCart} /> : <p>Your cart is empty</p>
                         }
                     </div>
                 </div>

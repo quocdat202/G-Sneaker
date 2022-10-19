@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import trash from '../images/trash.png'
-export default function ItemInCart({ productItem }) {
+
+export default function ItemInCart({ productItem, addToCart }) {
     const [reload, setReload] = useState(false);
     useEffect(() => {
         setReload(false);
@@ -12,7 +13,7 @@ export default function ItemInCart({ productItem }) {
     }
     if (productItem.length > 0) {
         return (
-            <div>
+            <>
                 {
                     productItem.map((item, index) => {
                         return (
@@ -28,8 +29,8 @@ export default function ItemInCart({ productItem }) {
                                     <div className="inCart-right-quantity-btn">
                                         <div className="inCart-right-btn-quantity">
                                             <button className="inCart-right-btn">-</button>
-                                            <div className="inCart-right-quantity">1</div>
-                                            <button className="inCart-right-btn">+</button>
+                                            <div className="inCart-right-quantity">{item.quantity}</div>
+                                            <button className="inCart-right-btn" onClick={() => addToCart(item.id, index)}>+</button>
                                         </div>
                                         <div className="inCart-right-btn-del" onClick={() => removeItem(index)}>
                                             <img src={trash} />
@@ -40,12 +41,12 @@ export default function ItemInCart({ productItem }) {
                         )
                     })
                 }
-            </div>
+            </>
         )
     } else {
         return (
             <div>
-                <p>Cart is empty</p>
+                <p>Your cart is empty</p>
             </div>
         )
     }

@@ -173,7 +173,7 @@
   height: 30px;
 }
 .inCart-right-quantity {
-  padding: 7px;
+  padding: 7px 15px;
 }
 .inCart-right-btn-del {
   background-color: #f8d43f;
@@ -187,4 +187,20 @@
 .inCart-right-btn-del img {
   width: 17px;
   height: 17px;
+}
+.inCart,
+.inCart-right {
+  position: relative;
+  animation-name: add-cart;
+  animation-duration: 4s;
+}
+@keyframes add-cart {
+  0% {
+    right: -200px;
+    top: 0px;
+  }
+  25% {
+    right: 0px;
+    top: 0px;
+  }
 }
