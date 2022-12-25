@@ -58,6 +58,23 @@ export default function Cart() {
         }
 
     }
+    function* g2() {
+        yield* [1, 2];
+        return 't sẽ trở thành vua hải tặc, vd như vậy xem chạy ko';
+    }
+
+    var rs;
+
+    function* g() {
+        rs = yield* g2();
+    }
+
+    var iterator = g();
+
+    console.log(iterator.next()); // {value: 1, done: false}
+    console.log(iterator.next()); // {value: 2, done: false}
+    console.log(iterator.next()); // {value: undefined, done: true}, 
+
     return (
         <div className="content-cart">
             <div className="cart cart-left">
