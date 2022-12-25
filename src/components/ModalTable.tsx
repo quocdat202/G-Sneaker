@@ -56,7 +56,7 @@ const ModalTable: React.FC<Props> = ({
                     </div>
                 }
             >
-                <p className="NotoSansThin">? </p>
+                {/* <p className="NotoSansThin">? </p> */}
                 <p className="NotoSansThin">削除した後、元に回復できませんので、ご注意ください。
                 </p>
             </Modal>
