@@ -62,9 +62,7 @@ export default function Cart() {
 
     var rs;
 
-    function* g() {
-        rs = yield* g2();
-    }
+
 
     var iterator = g();
 
