@@ -62,7 +62,7 @@ export default function Cart() {
         <div className="content-cart">
             <div className="cart cart-left">
                 <div className="item-top"><img src={nike} /></div>
-                <div className="item-title">Sản Phẩm</div>
+                <div className="item-title">Our Products</div>
                 <div className="item-content">
                     <div className="products-item">
                         {
