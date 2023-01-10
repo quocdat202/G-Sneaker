@@ -58,18 +58,6 @@ export default function Cart() {
         }
 
     }
-
-
-    var rs;
-
-
-
-    var iterator = g();
-
-    console.log(iterator.next()); // {value: 1, done: false}
-    console.log(iterator.next()); // {value: 2, done: false}
-    console.log(iterator.next()); // {value: undefined, done: true}, 
-
     return (
         <div className="content-cart">
             <div className="cart cart-left">
